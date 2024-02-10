@@ -1,0 +1,70 @@
+option {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select option {
+  text-decoration: underline;
+  color: #517CA8;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 9999999999;
+}
+
+
+
+select.minimal {
+  background-image: linear-gradient(45deg, #c8d594 50%, #fcbdbd 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+  /* background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em; */
+  /* background-size: 5px 5px, 5px 5px, 1px 1.5em; */
+  background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+  background-image: linear-gradient(45deg, #c8d594 50%, #fcbdbd 50%), linear-gradient(135deg, white 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+  /* background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em; */
+  /* background-size: 5px 5px, 5px 5px, 1px 1.5em; */
+  background-repeat: no-repeat;
+}
+
+.canvas-scroller-2::-webkit-scrollbar {
+  width: 5px;
+  height: 4.99px !important;
+}
+
+.canvas-scroller-2::-webkit-scrollbar-track {
+  background: #CBD6E2;
+  margin-left: 550px;
+  margin-right: 550px;
+  border-radius: 20px;
+  margin-bottom: 28.83px;
+
+}
+
+.canvas-scroller-2::-webkit-scrollbar-thumb {
+  background-color: #7C98B6;
+  border-radius: 20px;
+}
+
+.canvas-scroller-2::-webkit-scrollbar-thumb:hover {
+  background: rgba(40, 68, 109, 0.6);
+}
+
+
+.rows-box-shadow {
+  box-shadow: inset 0px 0px 1.2499994039535522px 0.3px rgba(0, 0, 0, 0.25) !important;
+}
+.logo{
+  height: 35px;
+  mix-blend-mode: multiply;
+  margin-right: 15px;
+}
