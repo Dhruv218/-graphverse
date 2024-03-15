@@ -35,7 +35,8 @@ const option={
                 display: false,
                 usePointStyle: true,
                 font: {
-                  size: 14,
+                  size: 16,
+                  weight:600,
                   family: "Lexend",
                 },
                 marginBottom: 10,
@@ -54,6 +55,10 @@ const option={
         scales: {
           x: {
             beginAtZero: true,
+            gridLines: {
+              drawBorder: false,
+            },
+          
             grid: {
               display: false,
             },
@@ -90,6 +95,10 @@ const option={
             }
           },
           y: {
+           
+              drawBorder: false,
+            
+          
             beginAtZero: true,
             grid:{
                 display: false,
@@ -132,5 +141,5 @@ const option={
       };
 
 export function Radarr({data}) {
-  return <Radar data={data} options={option} />;
+  return <Radar  type='radar' data={data} options={option} />;
 }

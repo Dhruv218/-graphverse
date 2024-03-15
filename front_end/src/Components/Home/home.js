@@ -14,6 +14,7 @@ export const Home = () => {
   const [arealine_data, setarealine_data] = useState();
   const [Bubble_data, setBubble_data] = useState();
   const [piechart_data, setpiechart_data] = useState();
+  const [piechart_data2, setpiechart_data2] = useState();
   const [stackedbarchart, setstackedbarchart] = useState();
   const base_url = process.env.REACT_APP_BACKEND_BASEURL;
 
@@ -154,6 +155,38 @@ export const Home = () => {
     });
   }
 
+  function sectorvsintensity2() {
+    const sectorIntensities = {};
+
+    data.forEach((item) => {
+      const sector = item.sector;
+      const intensity = item.intensity;
+
+      if (sectorIntensities[sector]) {
+        sectorIntensities[sector] =
+          (sectorIntensities[sector] + intensity) % 100;
+      } else {
+        sectorIntensities[sector] = [intensity];
+      }
+    });
+
+    const keysArray = Object.keys(sectorIntensities);
+    const valuesArray = Object.values(sectorIntensities);
+
+    setpiechart_data2({
+      labels: keysArray,
+      datasets: [
+        {
+          label: "No. of Intensity",
+          data: valuesArray,
+          backgroundColor: backgroundColors.slice(0, keysArray?.length),
+          borderwidth: 1,
+        },
+      ],
+    });
+  }
+
+
   function sectorvslikelhood() {
     const sectorIntensities = {};
 
@@ -241,6 +274,7 @@ export const Home = () => {
       sectorvsintensity();
       sectorvsstart_end_year();
       countryvsspecialscore();
+      sectorvsintensity2()
     }
   }, [data]);
 
@@ -346,17 +380,29 @@ export const Home = () => {
         </select>
       </div>
       <div className="w-full flex flex-col justify-center gap-4">
-        <p className="text-[#26435F] font-semibold ml-[4rem] whitespace-nowrap text-[17px] mt-8">
+        <p className="text-[#26435F] font-semibold ml-[4rem]  whitespace-nowrap text-[17px] mt-8">
           Intensity V/S Sector
         </p>
-        <div className="w-[93%] mx-auto overflow-x-auto rows-box-shadow bg-white rounded-md p-8 canvas-scroller-2 flex flex-col h-[450px]">
+        <div className="flex justify-center gap-[24px] flex-row h-[620px]">
+        <div className="w-[65%] mx-auto overflow-x-auto  p-8 rows-box-shadow bg-white rounded-md  canvas-scroller-2 flex flex-col h-full">
           <div
             style={{ width: arealine_data?.labels?.length * 100 }}
-            className="h-[380px]"
+            className="h-[550px]"
           >
             {arealine_data && <Arealine data={arealine_data} />}
           </div>
         </div>
+         
+       <div className="flex flex-col justify-between items-center w-[40%] h-full">
+       <div className="rows-box-shadow bg-white rounded-md p-8 w-[80%] h-[48%]">
+            {piechart_data2 && <Radarr data={piechart_data2} />}
+          </div>
+          <div className="rows-box-shadow bg-white rounded-md p-8 w-[80%] h-[48%]">
+            {piechart_data2 && <Pollar data={piechart_data2} />}
+          </div>
+         
+       </div>
+          </div>
         <p className="text-[#26435F] font-semibold ml-[4rem] whitespace-nowrap text-[17px] mt-8">
           Likelihood V/S Sector
         </p>
@@ -371,16 +417,16 @@ export const Home = () => {
         <p className="text-[#26435F] font-semibold ml-[4rem] whitespace-nowrap text-[17px] ">
           Start And End Year Vs Special Scores
         </p>
-        <div className="w-[93%] mx-auto overflow-x-auto rows-box-shadow bg-white rounded-md !pb-0 p-8 canvas-scroller-2 flex flex-col h-[450px]">
-          <div style={{ width: data?.length * 25 }} className="h-[400px]">
+        <div className="w-[93%] mx-auto overflow-x-auto rows-box-shadow bg-white rounded-md !pb-0 p-8 canvas-scroller-2 flex flex-col  h-[620px]">
+          <div style={{ width: data?.length * 25 }} className="h-[550px]">
             {Bubble_data && <Bubblee data={Bubble_data} />}
           </div>
         </div>
         <p className="text-[#26435F] font-semibold ml-[4rem] whitespace-nowrap text-[17px] ">
           Special Score VS Country
         </p>
-        <div className="w-[93%] mx-auto overflow-x-auto rows-box-shadow bg-white rounded-md !pb-0 p-8 canvas-scroller-2 flex flex-col h-[450px]">
-          <div style={{ width: data?.length * 25 }} className="h-[400px]">
+        <div className="w-[93%] mx-auto overflow-x-auto rows-box-shadow bg-white rounded-md !pb-0 p-8 canvas-scroller-2 flex flex-col h-[620px]">
+          <div style={{ width: data?.length * 55 }} className="h-[550px]">
             {stackedbarchart && <Stackedchart data={stackedbarchart} />}
           </div>
         </div>
